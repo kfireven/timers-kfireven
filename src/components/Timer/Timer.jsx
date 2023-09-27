@@ -4,7 +4,7 @@ import './timerStyle.css';
 const Timer = forwardRef(({ timeAmount, onTimerClose }, ref) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [isPaused, setIsPaused] = useState(false); // Add isPaused state
+  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const Timer = forwardRef(({ timeAmount, onTimerClose }, ref) => {
         ref({
           start: start,
           stop: stop,
-          pause: pause, // Add pause method
-          resume: resume, // Add resume method
+          pause: pause,
+          resume: resume,
         });
       } else {
         ref.current = {
@@ -48,7 +48,7 @@ const Timer = forwardRef(({ timeAmount, onTimerClose }, ref) => {
   const start = (delay = 0) => {
     setTimeout(() => {
       setIsActive(true);
-    }, delay * 1000); // Convert the delay to milliseconds
+    }, delay * 1000);
   };
 
   const stop = () => {
@@ -64,7 +64,6 @@ const Timer = forwardRef(({ timeAmount, onTimerClose }, ref) => {
 
   const resume = () => {
     setIsPaused(false);
-    // Resume the timer if it's active and not paused
     if (isActive && !isPaused && currentTime < timeAmount) {
       timerRef.current = setInterval(() => {
         setCurrentTime((prevTime) => prevTime + 1);

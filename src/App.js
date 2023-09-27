@@ -6,7 +6,6 @@ function App() {
   const [timers, setTimers] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
 
-  // Create refs for the timers
   const timerRefs = useRef({});
   const timeOptions = [10, 15, 20];
 
@@ -36,9 +35,8 @@ function App() {
   };
 
   const handleResetAll = () => {
-    // Iterate through timerRefs and stop each timer
     Object.keys(timerRefs.current).forEach((key) => {
-      timerRefs.current[key].stop(); // Call the stop method on the timer's ref
+      timerRefs.current[key].stop();
     });
 
     handleStart();
@@ -66,23 +64,20 @@ function App() {
   const handleStop = () => {
     setIsRunning(false);
 
-    // Iterate through timerRefs and stop each timer
     Object.keys(timerRefs.current).forEach((key) => {
-      timerRefs.current[key].stop(); // Call the stop method on the timer's ref
+      timerRefs.current[key].stop();
     });
   };
 
   const handlePauseAll = () => {
-    // Iterate through timerRefs and pause each timer
     Object.keys(timerRefs.current).forEach((key) => {
-      timerRefs.current[key].pause(); // Call the pause method on the timer's ref
+      timerRefs.current[key].pause();
     });
   };
 
   const handleResumeAll = () => {
-    // Iterate through timerRefs and resume each timer
     Object.keys(timerRefs.current).forEach((key) => {
-      timerRefs.current[key].resume(); // Call the resume method on the timer's ref
+      timerRefs.current[key].resume();
     });
   };
 
@@ -108,7 +103,7 @@ function App() {
               timeAmount={timer.timeAmount}
               onTimerClose={() => handleTimerClose(timer.key)}
               onTimerFinish={() => handleTimerFinish(timer.key)}
-              ref={(ref) => (timerRefs.current[timer.key] = ref)} // Pass the ref as a prop
+              ref={(ref) => (timerRefs.current[timer.key] = ref)}
             />
         ))}
       </div>
